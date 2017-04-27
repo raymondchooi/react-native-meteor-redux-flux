@@ -1,0 +1,19 @@
+<template name="info">
+  <h2>Policies</h2>
+
+  <table>
+    {{#each policies}}
+      <tr>
+        <td>
+          {{title}}
+        </td>
+        <td>
+          {{insurer}}
+        </td>
+        <td>
+          {{annualCost}}
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+</template>
