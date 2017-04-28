@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import Reducers from './global/allReducers';
 import SplashScreenContainer from './splashScreen/index';
 import LoginContainer from './login/index';
+import LockerContainer from './locker/index';
 
 const store = createStore(Reducers);
 persistStore(store, {storage: AsyncStorage});
@@ -26,6 +27,9 @@ export default class App extends Component {
               <Scene key="login"
                 component={LoginContainer}
                 title="LoginScreen"/>
+              <Scene key="locker"
+                component={LockerContainer}
+                title="Locker"/>
             </Scene>
           </Router>
         </View>

@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import LoginDetails from './components/loginDetails';
+
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,7 @@ class LoginContainer extends Component {
   render() {
     return (
       <View style={ styles.container }>
-
+        <LoginDetails/>
       </View>
     )
   }
@@ -19,7 +21,7 @@ class LoginContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: '#F34F5A',
   },
 });
 
