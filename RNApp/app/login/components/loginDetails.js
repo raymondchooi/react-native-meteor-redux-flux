@@ -15,12 +15,9 @@ export default class LoginDetails extends Component {
   }
 
   loginBtnPress() {
-    console.log(this.state.userName);
-    console.log(this.props.userName);
-    this.props.addCurrentUser({userName: this.state.userName});
     if (this.state.userName.length > 0 && this.state.password.length > 0) {
       this.props.addCurrentUser({userName: this.state.userName});
-      //this.loginProceed();
+      this.loginProceed();
     } else {
       this.setState({ warningText: "Username or Password too short!" });
     }

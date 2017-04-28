@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import ProfileHeader from './components/profileHeader';
+
 class LockerContainer extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,8 @@ class LockerContainer extends Component {
     console.log(this.props.userName);
     return (
       <View style={ styles.container }>
-
+        <ProfileHeader removeCurrentUser={ this.props.removeCurrentUser }
+        userName={ this.props.userName }/>
       </View>
     )
   }
@@ -20,11 +23,12 @@ class LockerContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: '#F34F5A',
   },
 });
 
 LockerContainer.propTypes = {
+  removeCurrentUser: PropTypes.func,
   userName: PropTypes.string,
 };
 
