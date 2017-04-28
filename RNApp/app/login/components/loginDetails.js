@@ -63,10 +63,6 @@ export default class LoginDetails extends Component {
               <Text style={ styles.loginBtnText }>Sign In</Text>
             </View>
           </TouchableOpacity>
-
-          <Text style={ styles.warningText }>
-            { this.props.userName }
-          </Text>
         </View>
 
         <View style= { styles.container }/>
