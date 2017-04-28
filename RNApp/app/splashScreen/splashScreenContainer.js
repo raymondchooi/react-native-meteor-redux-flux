@@ -15,16 +15,12 @@ class SplashScreenContainer extends Component {
   componentDidMount() {
     //Simulate loading
     this.timer = setTimeout( () => {
-      if(this.props.user == undefined) {
+      if(this.props.userName == undefined) {
         Actions.login();
       } else {
-        console.log("else");
+        Actions.locker();
       }
     }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
   }
 
   render() {
@@ -43,12 +39,12 @@ const styles = StyleSheet.create({
 });
 
 SplashScreenContainer.propTypes = {
-  user: PropTypes.string,
+  userName: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    userName: state.userName,
   };
 }
 

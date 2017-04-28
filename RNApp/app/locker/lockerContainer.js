@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
 });
 
 LockerContainer.propTypes = {
-  user: PropTypes.string,
+  userName: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    userName: state.userName,
   };
 }
 
