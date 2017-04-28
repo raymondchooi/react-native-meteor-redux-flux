@@ -2,7 +2,9 @@ import { combineReducers } from 'redux';
 import SplashScreenReducers from '../splashScreen/reducers';
 import LoginReducers from '../login/reducers';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   SplashScreenReducers,
   LoginReducers
 });
+
+export default rootReducer;

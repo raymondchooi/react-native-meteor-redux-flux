@@ -13,6 +13,7 @@ class SplashScreenContainer extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.userName);
     //Simulate loading
     this.timer = setTimeout( () => {
       if(this.props.userName == undefined) {

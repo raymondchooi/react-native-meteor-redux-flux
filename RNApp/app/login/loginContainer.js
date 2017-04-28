@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 
+import { addCurrentUser } from './actions';
 import LoginDetails from './components/loginDetails';
 
 class LoginContainer extends Component {
@@ -12,7 +13,8 @@ class LoginContainer extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <LoginDetails/>
+        <LoginDetails addCurrentUser={ this.props.addCurrentUser }
+        userName={this.props.userName}/>
       </View>
     )
   }
@@ -26,13 +28,20 @@ const styles = StyleSheet.create({
 });
 
 LoginContainer.propTypes = {
-  user: PropTypes.string,
+  addCurrentUser: PropTypes.func,
+  userName: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    userName: state.userName,
   };
 }
 
-export default connect(mapStateToProps)(LoginContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    addCurrentUser: payload => dispatch(addCurrentUser(payload)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

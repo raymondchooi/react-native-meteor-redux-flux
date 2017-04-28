@@ -8,6 +8,7 @@ class LockerContainer extends Component {
   }
 
   render() {
+    console.log(this.props.userName);
     return (
       <View style={ styles.container }>
 

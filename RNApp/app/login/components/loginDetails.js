@@ -15,8 +15,12 @@ export default class LoginDetails extends Component {
   }
 
   loginBtnPress() {
+    console.log(this.state.userName);
+    console.log(this.props.userName);
+    this.props.addCurrentUser({userName: this.state.userName});
     if (this.state.userName.length > 0 && this.state.password.length > 0) {
-      this.loginProceed();
+      this.props.addCurrentUser({userName: this.state.userName});
+      //this.loginProceed();
     } else {
       this.setState({ warningText: "Username or Password too short!" });
     }
@@ -34,6 +38,7 @@ export default class LoginDetails extends Component {
           <Text style={ styles.warningText }>
             { this.state.warningText }
           </Text>
+
           <View style={ styles.inputWrap }>
             <TextInput style={styles.textInput}
               onChangeText={ (text) => {
@@ -44,6 +49,7 @@ export default class LoginDetails extends Component {
               selectTextOnFocus={true}
               underlineColorAndroid='transparent'/>
           </View>
+
           <View style={ styles.inputWrap }>
             <TextInput style={ styles.textInput }
               onChangeText={ (text) => {
@@ -54,11 +60,16 @@ export default class LoginDetails extends Component {
               secureTextEntry={true}
               underlineColorAndroid='transparent'/>
           </View>
-          <TouchableOpacity activeOpacity={0.5} onPress={() => this.loginBtnPress()}>
+
+          <TouchableOpacity activeOpacity={0.7} onPress={() => this.loginBtnPress()}>
             <View style={ styles.loginBtn }>
               <Text style={ styles.loginBtnText }>Sign In</Text>
             </View>
           </TouchableOpacity>
+
+          <Text style={ styles.warningText }>
+            { this.props.userName }
+          </Text>
         </View>
 
         <View style= { styles.container }/>
@@ -103,5 +114,6 @@ const styles = StyleSheet.create({
 });
 
 LoginDetails.propTypes = {
-  loginFunc: PropTypes.func
+  addCurrentUser: PropTypes.func,
+  userName: PropTypes.string,
 };
