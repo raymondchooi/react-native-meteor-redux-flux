@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Animated, Image, StyleSheet, Text, TextInput,
-  TouchableOpacity, View } from 'react-native';
+import { Animated, Image, Keyboard, StyleSheet, Text, TextInput,
+  TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+//Keyboard.dismiss does not work outside render
+const dismissKeyboard = require('dismissKeyboard');
 
 export default class LoginDetails extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ export default class LoginDetails extends Component {
   }
 
   loginBtnPress() {
+    dismissKeyboard();
     if (this.state.userName.length > 0 && this.state.password.length > 0) {
       this.props.addCurrentUser({userName: this.state.userName});
       this.loginProceed();
@@ -29,44 +33,52 @@ export default class LoginDetails extends Component {
 
   render() {
     return (
-      <View style={ styles.container}>
-        <View style={ styles.container }/>
-        <View style={ styles.wrapper }>
-          <Text style={ styles.warningText }>
-            { this.state.warningText }
-          </Text>
+      <TouchableWithoutFeedback onPress={ Keyboard.dismiss }>
+        <View style={ styles.container}>
 
-          <View style={ styles.inputWrap }>
-            <TextInput style={styles.textInput}
-              onChangeText={ (text) => {
-                this.setState({ userName: text })}}
-              placeholder="Username"
-              placeholderTextColor='#d3d3d3'
-              autoFocus={true}
-              selectTextOnFocus={true}
-              underlineColorAndroid='transparent'/>
-          </View>
+          <View style={ styles.container }/>
 
-          <View style={ styles.inputWrap }>
-            <TextInput style={ styles.textInput }
-              onChangeText={ (text) => {
-                this.setState({ password: text })}}
-              placeholder="Password"
-              placeholderTextColor='#d3d3d3'
-              selectTextOnFocus={true}
-              secureTextEntry={true}
-              underlineColorAndroid='transparent'/>
-          </View>
+          <View style={ styles.wrapper }>
+            <Text style={ styles.warningText }>
+              { this.state.warningText }
+            </Text>
 
-          <TouchableOpacity activeOpacity={0.7} onPress={() => this.loginBtnPress()}>
-            <View style={ styles.loginBtn }>
-              <Text style={ styles.loginBtnText }>Sign In</Text>
+            <View style={ styles.inputWrap }>
+              <TextInput style={styles.textInput}
+                onChangeText={ (text) => {
+                  this.setState({ userName: text })}}
+                placeholder="Username"
+                placeholderTextColor='#d3d3d3'
+                autoFocus={true}
+                selectTextOnFocus={true}
+                onSubmitEditing={Keyboard.dismiss}
+                underlineColorAndroid='transparent'/>
             </View>
-          </TouchableOpacity>
-        </View>
 
-        <View style= { styles.container }/>
-      </View>
+            <View style={ styles.inputWrap }>
+              <TextInput style={ styles.textInput }
+                onChangeText={ (text) => {
+                  this.setState({ password: text })}}
+                placeholder="Password"
+                placeholderTextColor='#d3d3d3'
+                onSubmitEditing={Keyboard.dismiss}
+                selectTextOnFocus={true}
+                secureTextEntry={true}
+                underlineColorAndroid='transparent'/>
+            </View>
+
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.loginBtnPress()}>
+              <View style={ styles.loginBtn }>
+                <Text style={ styles.loginBtnText }>Sign In</Text>
+              </View>
+            </TouchableOpacity>
+
+          </View>
+
+          <View style= { styles.container }/>
+
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 };
