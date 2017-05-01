@@ -47,25 +47,26 @@ export default class ProfileHeader extends Component {
       <View style={ styles.container}>
         <View style={ styles.wrapper }>
           <View style={ styles.textWrap }>
-          <Text style={ styles.profileText }>
-            Hey {this.props.userName}!
-          </Text>
+            <Text style={ styles.profileText }>
+              Hey {this.props.userName}!
+            </Text>
+
+            <Text style={ styles.profileText }>
+              You are all up to date.
+            </Text>
+
+            <Text style={ styles.profileText }>
+              Check out your locker below:
+            </Text>
           </View>
-          <View style={ styles.textWrap }>
-          <Text style={ styles.profileText }>
-            You are all up to date.
-          </Text>
+
+          <View style={ styles.logoutBtnHolder }>
+            <View style={ styles.headerSeparator }/>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.logoutBtnPress()}>
+              <Image style={ styles.logoutBtn }
+                source={ require('../../global/images/logoutIcon.png')}/>
+            </TouchableOpacity>
           </View>
-          <View style={ styles.textWrap }>
-          <Text style={ styles.profileText }>
-            Check out your locker below:
-          </Text>
-          </View>
-          <TouchableOpacity activeOpacity={0.7} onPress={() => this.logoutBtnPress()}>
-            <View style={ styles.logoutBtn }>
-              <Text style={ styles.loginBtnText }>Sign Out</Text>
-            </View>
-          </TouchableOpacity>
         </View>
       </View>
     )
@@ -78,15 +79,15 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     top: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#34495e'
   },
   profileText: {
     color: '#fff',
-    paddingVertical: 5,
   },
   textWrap: {
-    flexDirection: 'row',
-    marginVertical: 1,
-    height: 40,
+    marginVertical: 10,
     paddingHorizontal: 10,
     backgroundColor: 'transparent',
   },
@@ -95,13 +96,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#fff',
   },
+  logoutBtnHolder: {
+    flexDirection: 'row',
+  },
+  headerSeparator: {
+    width: 1,
+    backgroundColor: '#fff',
+    marginVertical: 10,
+  },
   logoutBtn: {
-    marginHorizontal: 10,
-    backgroundColor: '#34495e',
+    height: 50,
+    width: 50,
+    right: 0,
+    marginHorizontal: 15,
     paddingVertical: 15,
     marginVertical: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   logoutBtnText: {
     color: '#fff',
