@@ -22,10 +22,14 @@ export default class App extends Component {
           <Router>
             <Scene key='root' hideNavBar={true}>
               <Scene key="splashScreen"
+                animation='fade'
+                duration='300'
                 initial={true}
                 component={SplashScreenContainer}
                 title="SplashScreen"/>
               <Scene key="login"
+                duration='300'
+                animation='fade'
                 component={LoginContainer}
                 title="LoginScreen"/>
               <Scene key="locker"
